@@ -480,3 +480,17 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+# ==========================================
+# Custom ASP.NET Core & Database Overrides
+# ==========================================
+# Ignore Build Folders explicitly
+**/bin/
+**/obj/
+.vs/
+
+# Ignore Local Database files
+*.mdf
+*.ldf
+
+# Prevent uploading secrets/connection strings if using local settings
+# appsettings.Development.json
