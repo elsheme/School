@@ -14,29 +14,64 @@ namespace SchoolProject2.repostory
         }
         public void Creation(Student student)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                _localContext.Students.Add(student);
+                _localContext.SaveChanges();
+
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            try {
+            
+              Student obj = GetStudentById(id);
+              _localContext.Students.Remove(obj);
+                _localContext.SaveChanges();
+            }catch (Exception ex) { }
         }
 
         public Student GetStudentById(int id)
         {
-            throw new NotImplementedException();
+           return _localContext.Students.SingleOrDefault(x => x.Id == id);
         }
 
         public List<Student> GetStudents()
         {
+            try
+            {
+                return (from studentObj in _localContext.Students
+                        select studentObj).ToList();
+            }
+            catch (Exception e)
+            {
 
-            return (from studentObj in _localContext.Students
-                    select studentObj).ToList();
+                string msg = e.Message;
+
+                return null;
+
+            }
+
+
         }
 
         public void register(int StudentId, int CourseId)
         {
-            throw new NotImplementedException();
+            try {
+                StudentCourse studentCourse = new StudentCourse();
+                studentCourse.CourseId = CourseId;
+                studentCourse.StudentId = StudentId;
+
+                _localContext.StudentCourses.Add(studentCourse);
+                _localContext.SaveChanges();
+            }
+            catch (Exception ex) { }
         }
     }
 }

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SchoolProject2.Dbcontext;
+using SchoolProject2.repostory;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,11 @@ builder.Services.AddControllersWithViews();
 // Add the DbContext to the service container
 builder.Services.AddDbContext<LocalDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<ITeacherrepostory, Teacherrepostory>();
+builder.Services.AddScoped<IStudentrepostory, Studentrepostory>();
+builder.Services.AddScoped<IRoomrepostory, Roomrepostory>();
+builder.Services.AddScoped<ICourserepostory, Courserepostory>();
 
 var app = builder.Build();
 
