@@ -1,0 +1,16 @@
+@{
+    ViewData["Title"] = "Delete Room";
+    var id = Context.Request.RouteValues["id"];
+}
+
+<h2>Delete Room</h2>
+<div class="alert alert-danger mt-3">
+    <h5>Are you sure you want to delete Room #@id?</h5>
+</div>
+
+<form asp-action="Delete" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="id" value="@id" />
+    <button type="submit" class="btn btn-danger">Confirm Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

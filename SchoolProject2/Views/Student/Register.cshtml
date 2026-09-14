@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "Enroll Student in Course";
+}
+
+<h2>Enroll Student in Course</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-controller="Student" asp-action="Register" method="post">
+            <div class="mb-3">
+                <label for="StudentId" class="form-label">Student ID</label>
+                <input type="number" id="StudentId" name="StudentId" class="form-control" required />
+            </div>
+            <div class="mb-3">
+                <label for="CourseId" class="form-label">Course ID</label>
+                <input type="number" id="CourseId" name="CourseId" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Enroll</button>
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </form>
+    </div>
+</div>

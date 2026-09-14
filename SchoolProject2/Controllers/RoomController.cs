@@ -14,7 +14,7 @@ namespace SchoolProject2.Controllers
         public ActionResult Index()
         {
             List<Room> rooms = _roomrepostory.GetRooms();
-            return View();
+            return View(rooms);
         }
 
         // GET: RoomController/Details/5

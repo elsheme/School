@@ -1,0 +1,59 @@
+@model IEnumerable<SchoolProject2.Models.Teacher>
+
+@{
+    ViewData["Title"] = "Teachers";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Teachers</h2>
+    <a asp-action="Create" class="btn btn-primary">Add Teacher</a>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Teacher ID</th>
+            <th>User ID</th>
+            <th>Subject</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.UserId</td>
+                    <td>@item.Subject</td>
+                    <td>
+                        <button class="btn btn-sm btn-danger" onclick="deleteTeacher(@item.Id)">Delete</button>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" class="text-center">No teachers found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function deleteTeacher(id) {
+        if (confirm("Delete this teacher?")) {
+            fetch('/Teacher/Delete/' + id, {
+                method: 'DELETE'
+            }).then(response => {
+                if (response.ok) {
+                    location.reload();
+                } else {
+                    alert("Error deleting record");
+                }
+            });
+        }
+    }
+</script>
